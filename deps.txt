@@ -1,0 +1,287 @@
+:dependencies
+
+------------------------------------------------------------
+Root project
+------------------------------------------------------------
+
+archives - Configuration for archive artifacts.
+No dependencies
+
+checkstyle - The Checkstyle libraries to be used for this project.
+\--- com.puppycrawl.tools:checkstyle:7.5.1
+     +--- antlr:antlr:2.7.7
+     +--- org.antlr:antlr4-runtime:4.6
+     +--- commons-beanutils:commons-beanutils:1.9.3
+     |    \--- commons-collections:commons-collections:3.2.2
+     +--- commons-cli:commons-cli:1.3.1
+     \--- com.google.guava:guava:19.0
+
+compile - Compile classpath for source set 'main'.
++--- org.elasticsearch:elasticsearch:5.2.1
+|    +--- org.apache.lucene:lucene-core:6.4.1
+|    +--- org.apache.lucene:lucene-analyzers-common:6.4.1
+|    +--- org.apache.lucene:lucene-backward-codecs:6.4.1
+|    +--- org.apache.lucene:lucene-grouping:6.4.1
+|    +--- org.apache.lucene:lucene-highlighter:6.4.1
+|    +--- org.apache.lucene:lucene-join:6.4.1
+|    +--- org.apache.lucene:lucene-memory:6.4.1
+|    +--- org.apache.lucene:lucene-misc:6.4.1
+|    +--- org.apache.lucene:lucene-queries:6.4.1
+|    +--- org.apache.lucene:lucene-queryparser:6.4.1
+|    +--- org.apache.lucene:lucene-sandbox:6.4.1
+|    +--- org.apache.lucene:lucene-spatial:6.4.1
+|    +--- org.apache.lucene:lucene-spatial-extras:6.4.1
+|    +--- org.apache.lucene:lucene-spatial3d:6.4.1
+|    +--- org.apache.lucene:lucene-suggest:6.4.1
+|    +--- org.elasticsearch:securesm:1.1
+|    +--- net.sf.jopt-simple:jopt-simple:5.0.2
+|    +--- com.carrotsearch:hppc:0.7.1
+|    +--- joda-time:joda-time:2.9.5
+|    +--- org.yaml:snakeyaml:1.15
+|    +--- com.fasterxml.jackson.core:jackson-core:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-smile:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.8.6
+|    +--- com.tdunning:t-digest:3.0
+|    +--- org.hdrhistogram:HdrHistogram:2.1.6
+|    \--- net.java.dev.jna:jna:4.2.2
++--- cz.jirutka.rsql:rsql-parser:2.1.0
++--- org.apache.logging.log4j:log4j-api:2.8
+\--- org.apache.logging.log4j:log4j-core:2.8
+     \--- org.apache.logging.log4j:log4j-api:2.8
+
+default - Configuration for default artifacts.
++--- org.elasticsearch:elasticsearch:5.2.1
+|    +--- org.apache.lucene:lucene-core:6.4.1
+|    +--- org.apache.lucene:lucene-analyzers-common:6.4.1
+|    +--- org.apache.lucene:lucene-backward-codecs:6.4.1
+|    +--- org.apache.lucene:lucene-grouping:6.4.1
+|    +--- org.apache.lucene:lucene-highlighter:6.4.1
+|    +--- org.apache.lucene:lucene-join:6.4.1
+|    +--- org.apache.lucene:lucene-memory:6.4.1
+|    +--- org.apache.lucene:lucene-misc:6.4.1
+|    +--- org.apache.lucene:lucene-queries:6.4.1
+|    +--- org.apache.lucene:lucene-queryparser:6.4.1
+|    +--- org.apache.lucene:lucene-sandbox:6.4.1
+|    +--- org.apache.lucene:lucene-spatial:6.4.1
+|    +--- org.apache.lucene:lucene-spatial-extras:6.4.1
+|    +--- org.apache.lucene:lucene-spatial3d:6.4.1
+|    +--- org.apache.lucene:lucene-suggest:6.4.1
+|    +--- org.elasticsearch:securesm:1.1
+|    +--- net.sf.jopt-simple:jopt-simple:5.0.2
+|    +--- com.carrotsearch:hppc:0.7.1
+|    +--- joda-time:joda-time:2.9.5
+|    +--- org.yaml:snakeyaml:1.15
+|    +--- com.fasterxml.jackson.core:jackson-core:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-smile:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.8.6
+|    +--- com.tdunning:t-digest:3.0
+|    +--- org.hdrhistogram:HdrHistogram:2.1.6
+|    \--- net.java.dev.jna:jna:4.2.2
++--- cz.jirutka.rsql:rsql-parser:2.1.0
++--- org.apache.logging.log4j:log4j-api:2.8
+\--- org.apache.logging.log4j:log4j-core:2.8
+     \--- org.apache.logging.log4j:log4j-api:2.8
+
+findbugs - The FindBugs libraries to be used for this project.
+\--- com.google.code.findbugs:findbugs:3.0.1
+     +--- net.jcip:jcip-annotations:1.0
+     +--- com.google.code.findbugs:jsr305:2.0.1
+     +--- com.google.code.findbugs:bcel-findbugs:6.0
+     +--- com.google.code.findbugs:jFormatString:2.0.1
+     +--- dom4j:dom4j:1.6.1
+     |    \--- xml-apis:xml-apis:1.0.b2
+     +--- org.ow2.asm:asm-debug-all:5.0.2
+     +--- org.ow2.asm:asm-commons:5.0.2
+     |    \--- org.ow2.asm:asm-tree:5.0.2
+     |         \--- org.ow2.asm:asm:5.0.2
+     +--- commons-lang:commons-lang:2.6
+     +--- com.apple:AppleJavaExtensions:1.4
+     \--- jaxen:jaxen:1.1.6
+
+findbugsPlugins - The FindBugs plugins to be used for this project.
+No dependencies
+
+jacocoAgent - The Jacoco agent to use to get coverage data.
+\--- org.jacoco:org.jacoco.agent:0.7.1.201405082137
+
+jacocoAnt - The Jacoco ant tasks to use to get execute Gradle tasks.
+\--- org.jacoco:org.jacoco.ant:0.7.1.201405082137
+     +--- org.jacoco:org.jacoco.core:0.7.1.201405082137
+     |    \--- org.ow2.asm:asm-debug-all:5.0.1
+     +--- org.jacoco:org.jacoco.report:0.7.1.201405082137
+     |    +--- org.jacoco:org.jacoco.core:0.7.1.201405082137 (*)
+     |    \--- org.ow2.asm:asm-debug-all:5.0.1
+     \--- org.jacoco:org.jacoco.agent:0.7.1.201405082137
+
+pmd - The PMD libraries to be used for this project.
+\--- net.sourceforge.pmd:pmd-java:5.2.3
+     +--- jaxen:jaxen:1.1.4
+     +--- net.java.dev.javacc:javacc:5.0
+     +--- net.sourceforge.pmd:pmd-core:5.2.3
+     |    +--- com.beust:jcommander:1.35
+     |    +--- commons-io:commons-io:2.4
+     |    +--- jaxen:jaxen:1.1.4
+     |    +--- net.java.dev.javacc:javacc:5.0
+     |    +--- net.sourceforge.saxon:saxon:9.1.0.8
+     |    +--- org.apache.commons:commons-lang3:3.3.2
+     |    \--- org.ow2.asm:asm:5.0.3
+     +--- net.sourceforge.saxon:saxon:9.1.0.8
+     +--- org.ow2.asm:asm:5.0.3
+     \--- xerces:xercesImpl:2.11.0
+          \--- xml-apis:xml-apis:1.4.01
+
+runtime - Runtime classpath for source set 'main'.
++--- org.elasticsearch:elasticsearch:5.2.1
+|    +--- org.apache.lucene:lucene-core:6.4.1
+|    +--- org.apache.lucene:lucene-analyzers-common:6.4.1
+|    +--- org.apache.lucene:lucene-backward-codecs:6.4.1
+|    +--- org.apache.lucene:lucene-grouping:6.4.1
+|    +--- org.apache.lucene:lucene-highlighter:6.4.1
+|    +--- org.apache.lucene:lucene-join:6.4.1
+|    +--- org.apache.lucene:lucene-memory:6.4.1
+|    +--- org.apache.lucene:lucene-misc:6.4.1
+|    +--- org.apache.lucene:lucene-queries:6.4.1
+|    +--- org.apache.lucene:lucene-queryparser:6.4.1
+|    +--- org.apache.lucene:lucene-sandbox:6.4.1
+|    +--- org.apache.lucene:lucene-spatial:6.4.1
+|    +--- org.apache.lucene:lucene-spatial-extras:6.4.1
+|    +--- org.apache.lucene:lucene-spatial3d:6.4.1
+|    +--- org.apache.lucene:lucene-suggest:6.4.1
+|    +--- org.elasticsearch:securesm:1.1
+|    +--- net.sf.jopt-simple:jopt-simple:5.0.2
+|    +--- com.carrotsearch:hppc:0.7.1
+|    +--- joda-time:joda-time:2.9.5
+|    +--- org.yaml:snakeyaml:1.15
+|    +--- com.fasterxml.jackson.core:jackson-core:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-smile:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.8.6
+|    +--- com.tdunning:t-digest:3.0
+|    +--- org.hdrhistogram:HdrHistogram:2.1.6
+|    \--- net.java.dev.jna:jna:4.2.2
++--- cz.jirutka.rsql:rsql-parser:2.1.0
++--- org.apache.logging.log4j:log4j-api:2.8
+\--- org.apache.logging.log4j:log4j-core:2.8
+     \--- org.apache.logging.log4j:log4j-api:2.8
+
+testCompile - Compile classpath for source set 'test'.
++--- org.elasticsearch:elasticsearch:5.2.1
+|    +--- org.apache.lucene:lucene-core:6.4.1
+|    +--- org.apache.lucene:lucene-analyzers-common:6.4.1
+|    +--- org.apache.lucene:lucene-backward-codecs:6.4.1
+|    +--- org.apache.lucene:lucene-grouping:6.4.1
+|    +--- org.apache.lucene:lucene-highlighter:6.4.1
+|    +--- org.apache.lucene:lucene-join:6.4.1
+|    +--- org.apache.lucene:lucene-memory:6.4.1
+|    +--- org.apache.lucene:lucene-misc:6.4.1
+|    +--- org.apache.lucene:lucene-queries:6.4.1
+|    +--- org.apache.lucene:lucene-queryparser:6.4.1
+|    +--- org.apache.lucene:lucene-sandbox:6.4.1
+|    +--- org.apache.lucene:lucene-spatial:6.4.1
+|    +--- org.apache.lucene:lucene-spatial-extras:6.4.1
+|    +--- org.apache.lucene:lucene-spatial3d:6.4.1
+|    +--- org.apache.lucene:lucene-suggest:6.4.1
+|    +--- org.elasticsearch:securesm:1.1
+|    +--- net.sf.jopt-simple:jopt-simple:5.0.2
+|    +--- com.carrotsearch:hppc:0.7.1
+|    +--- joda-time:joda-time:2.9.5
+|    +--- org.yaml:snakeyaml:1.15
+|    +--- com.fasterxml.jackson.core:jackson-core:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-smile:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.8.6
+|    +--- com.tdunning:t-digest:3.0
+|    +--- org.hdrhistogram:HdrHistogram:2.1.6
+|    \--- net.java.dev.jna:jna:4.2.2
++--- cz.jirutka.rsql:rsql-parser:2.1.0
++--- org.apache.logging.log4j:log4j-api:2.8
++--- org.apache.logging.log4j:log4j-core:2.8
+|    \--- org.apache.logging.log4j:log4j-api:2.8
++--- org.elasticsearch.test:framework:5.2.1
+|    +--- org.elasticsearch:elasticsearch:5.2.1 (*)
+|    +--- com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.4.0
+|    +--- junit:junit:4.11
+|    +--- org.hamcrest:hamcrest-all:1.3
+|    +--- org.apache.lucene:lucene-test-framework:6.4.1
+|    +--- org.apache.lucene:lucene-codecs:6.4.1
+|    +--- org.elasticsearch.client:rest:5.2.1
+|    |    +--- org.apache.httpcomponents:httpclient:4.5.2
+|    |    +--- org.apache.httpcomponents:httpcore:4.4.5
+|    |    +--- org.apache.httpcomponents:httpasyncclient:4.1.2
+|    |    +--- org.apache.httpcomponents:httpcore-nio:4.4.5
+|    |    +--- commons-codec:commons-codec:1.10
+|    |    \--- commons-logging:commons-logging:1.1.3
+|    +--- org.apache.httpcomponents:httpclient:4.5.2
+|    +--- org.apache.httpcomponents:httpcore:4.4.5
+|    +--- commons-logging:commons-logging:1.1.3
+|    +--- commons-codec:commons-codec:1.10
+|    \--- org.elasticsearch:securemock:1.2
+\--- com.github.javafaker:javafaker:0.12
+     +--- org.apache.commons:commons-lang3:3.5
+     \--- com.github.mifmif:generex:1.0.2
+          \--- dk.brics.automaton:automaton:1.11-8
+
+testRuntime - Runtime classpath for source set 'test'.
++--- org.elasticsearch:elasticsearch:5.2.1
+|    +--- org.apache.lucene:lucene-core:6.4.1
+|    +--- org.apache.lucene:lucene-analyzers-common:6.4.1
+|    +--- org.apache.lucene:lucene-backward-codecs:6.4.1
+|    +--- org.apache.lucene:lucene-grouping:6.4.1
+|    +--- org.apache.lucene:lucene-highlighter:6.4.1
+|    +--- org.apache.lucene:lucene-join:6.4.1
+|    +--- org.apache.lucene:lucene-memory:6.4.1
+|    +--- org.apache.lucene:lucene-misc:6.4.1
+|    +--- org.apache.lucene:lucene-queries:6.4.1
+|    +--- org.apache.lucene:lucene-queryparser:6.4.1
+|    +--- org.apache.lucene:lucene-sandbox:6.4.1
+|    +--- org.apache.lucene:lucene-spatial:6.4.1
+|    +--- org.apache.lucene:lucene-spatial-extras:6.4.1
+|    +--- org.apache.lucene:lucene-spatial3d:6.4.1
+|    +--- org.apache.lucene:lucene-suggest:6.4.1
+|    +--- org.elasticsearch:securesm:1.1
+|    +--- net.sf.jopt-simple:jopt-simple:5.0.2
+|    +--- com.carrotsearch:hppc:0.7.1
+|    +--- joda-time:joda-time:2.9.5
+|    +--- org.yaml:snakeyaml:1.15
+|    +--- com.fasterxml.jackson.core:jackson-core:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-smile:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.6
+|    +--- com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.8.6
+|    +--- com.tdunning:t-digest:3.0
+|    +--- org.hdrhistogram:HdrHistogram:2.1.6
+|    \--- net.java.dev.jna:jna:4.2.2
++--- cz.jirutka.rsql:rsql-parser:2.1.0
++--- org.apache.logging.log4j:log4j-api:2.8
++--- org.apache.logging.log4j:log4j-core:2.8
+|    \--- org.apache.logging.log4j:log4j-api:2.8
++--- org.elasticsearch.test:framework:5.2.1
+|    +--- org.elasticsearch:elasticsearch:5.2.1 (*)
+|    +--- com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.4.0
+|    +--- junit:junit:4.11
+|    +--- org.hamcrest:hamcrest-all:1.3
+|    +--- org.apache.lucene:lucene-test-framework:6.4.1
+|    +--- org.apache.lucene:lucene-codecs:6.4.1
+|    +--- org.elasticsearch.client:rest:5.2.1
+|    |    +--- org.apache.httpcomponents:httpclient:4.5.2
+|    |    +--- org.apache.httpcomponents:httpcore:4.4.5
+|    |    +--- org.apache.httpcomponents:httpasyncclient:4.1.2
+|    |    +--- org.apache.httpcomponents:httpcore-nio:4.4.5
+|    |    +--- commons-codec:commons-codec:1.10
+|    |    \--- commons-logging:commons-logging:1.1.3
+|    +--- org.apache.httpcomponents:httpclient:4.5.2
+|    +--- org.apache.httpcomponents:httpcore:4.4.5
+|    +--- commons-logging:commons-logging:1.1.3
+|    +--- commons-codec:commons-codec:1.10
+|    \--- org.elasticsearch:securemock:1.2
+\--- com.github.javafaker:javafaker:0.12
+     +--- org.apache.commons:commons-lang3:3.5
+     \--- com.github.mifmif:generex:1.0.2
+          \--- dk.brics.automaton:automaton:1.11-8
+
+(*) - dependencies omitted (listed previously)
+
+BUILD SUCCESSFUL
+
+Total time: 3.57 secs

@@ -1,0 +1,77 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: "idea"
+apply plugin: "java"
+apply plugin: "checkstyle"
+apply plugin: "findbugs"
+apply plugin: "pmd"
+apply plugin: "jacoco"
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "3.3"
+}
+
+dependencies {
+    compile "org.elasticsearch:elasticsearch:5.2.1"
+    compile "cz.jirutka.rsql:rsql-parser:2.1.0"
+
+    // Logging
+    //compile "ch.qos.logback:logback-classic:1.2.1"
+    //compile "org.apache.logging.log4j:log4j-to-slf4j:2.7"
+    compile "org.apache.logging.log4j:log4j-api:2.8"
+    compile "org.apache.logging.log4j:log4j-core:2.8"
+
+
+    // Testing
+    testCompile "org.elasticsearch.test:framework:5.2.1"
+    testCompile "com.github.javafaker:javafaker:0.12"
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/resorces/main")
+        testSourceDirs += file("src/test")
+    }
+
+    project {
+        jdkName = "1.8"
+        languageLevel = "1.8"
+    }
+}
+
+sourceSets {
+    main {
+        output.resourcesDir = "$buildDir/resorces/main"
+    }
+    test {
+        output.resourcesDir = "$buildDir/resorces/test"
+    }
+}
+
+checkstyle {
+    ignoreFailures = true
+    toolVersion = '7.5.1'
+    sourceSets = [ sourceSets.main ]
+}
+findbugs {
+    ignoreFailures = true
+    sourceSets = [ sourceSets.main ]
+}
+pmd {
+    ignoreFailures = true
+    sourceSets = [ sourceSets.main ]
+}
+test {
+    ignoreFailures = true
+}
+
+check.dependsOn jacocoTestReport

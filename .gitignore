@@ -1,0 +1,13 @@
+.idea/
+.idea/*
+.gradle/
+classes/
+build/
+.gradle
+*.class
+*.jar
+*.war
+*.ear
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
