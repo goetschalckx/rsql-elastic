@@ -1,11 +1,16 @@
 package com.goetschalckx.rsql.elastic;
 
 import com.carrotsearch.randomizedtesting.RandomizedRunner;
+import com.carrotsearch.randomizedtesting.annotations.ThreadLeakScope;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.javafaker.Faker;
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;
+import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
+import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.client.Client;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.test.ESIntegTestCase;
@@ -18,68 +23,91 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@ESIntegTestCase.ClusterScope(scope = ESIntegTestCase.Scope.SUITE, numDataNodes = 1)
+@ESIntegTestCase.ClusterScope(scope = ESIntegTestCase.Scope.SUITE)
+@ThreadLeakScope(ThreadLeakScope.Scope.NONE)
 @RunWith(RandomizedRunner.class)
 public class ElasticVisitorIntegTest extends ESIntegTestCase {
 
     private static final Faker FAKER = new Faker();
 
-    String id1 = UUID.randomUUID().toString();
-    String id2 = UUID.randomUUID().toString();
-    String id3 = UUID.randomUUID().toString();
-    String tweet1 = tweet(id1);
-    String tweet2 = tweet(id2);
-    String tweet3 = tweet(id3);
+    private String id1 = UUID.randomUUID().toString();
+    private String id2 = UUID.randomUUID().toString();
+    private String id3 = UUID.randomUUID().toString();
+    private String tweet1 = tweet(id1);
+    private String tweet2 = tweet(id2);
+    private String tweet3 = tweet(id3);
 
-    String index = "twitter";
-    String type = "tweet";
-    ElasticVisitor elasticVisitor = new ElasticVisitor(new ElasticComparisonNodeInterpreter());
+    private String index = "twitter";
+    private String type = "tweet";
+    private ElasticVisitor elasticVisitor = new ElasticVisitor(new ElasticComparisonNodeInterpreter());
 
-    String mapping =
-            "{\n" +
-            "  \"properties\": {\n" +
-            "    \"id\": {\n" +
-            "      \"type\": \"keyword\",\n" +
-            "      \"index\": true\n" +
-            "    },\n" +
-            "    \"author\": {\n" +
-            "      \"type\": \"text\",\n" +
-            "      \"index\": true\n" +
-            "    },\n" +
-            "    \"text\": {\n" +
-            "      \"type\": \"text\",\n" +
-            "      \"index\": true\n" +
-            "    },\n" +
-            "    \"ts\": {\n" +
-            "      \"type\": \"long\",\n" +
-            "      \"index\": true\n" +
-            "    }\n" +
-            "  }\n" +
+    private Client client;
+
+    /*
+    {
+  "properties": {
+    "email": {
+      "type": "keyword"
+    }
+  }
+}*/
+
+    private String mapping =
+            "{" +
+            "  \"properties\": {" +
+            "    \"id\": {" +
+            "      \"type\": \"keyword\"" +
+            "    }," +
+            "    \"author\": {" +
+            "      \"type\": \"text\"" +
+            "    }," +
+            "    \"text\": {" +
+            "      \"type\": \"text\"" +
+            "    }," +
+            "    \"ts\": {" +
+            "      \"type\": \"long\"" +
+            "    }" +
+            "  }" +
             "}";
 
     @Before
-    public void setup() throws IOException {
+    @Override
+    public void setUp() throws Exception {
+        super.setUp();
+
+        this.client = client();
+
         ensureGreen();
 
         if (!indexExists(index)) {
             createIndex(index);
 
-            client().admin().indices().preparePutMapping()
+            client
+                    .admin()
+                    .indices()
+                    .preparePutMapping()
                     .setIndices(index)
                     .setType(type)
-                    .setSource(mapping)
+                    .setSource(mapping, XContentType.JSON)
                     .get();
 
             initStaticTweets();
 
             for (int i = 0; i < 7; i++) {
                 String id = UUID.randomUUID().toString();
-                indexTweet(id, tweet(id));
+                //indexTweet(id, tweet(id));
             }
 
             flushAndRefresh();
         }
     }
+
+    /*@Override
+    @Before
+    public void setUp() throws Exception {
+        super.setUp();
+        this.client = client();
+    }*/
 
     /*@Test
     public void testQueries() throws IOException {
