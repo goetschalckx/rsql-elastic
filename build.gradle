@@ -1,29 +1,31 @@
-apply plugin: "java"
-apply plugin: "jacoco"
-apply plugin: "maven-publish"
+plugins {
+    id "java"
+    id "jacoco"
+    id "maven-publish"
+}
 
 repositories {
     mavenCentral()
-    //mavenLocal()
 }
 
-/*test {
-
-    // need to run the tests like this:
-    // ./gradlew clean test -Dtests.security.manager=false
-    systemProperty "tests.security.manager", System.getProperty("tests.security.manager")
-}*/
+group = 'com.goetschalckx'
+version = '0.1'
 
 dependencies {
     implementation "org.elasticsearch.client:transport:6.2.2"
     implementation "cz.jirutka.rsql:rsql-parser:2.1.0"
 
     // Testing
-    testImplementation "org.elasticsearch.test:framework:5.2.1"
-    //testImplementation "junit:junit:4.12"
-    //testImplementation "org.mockito:mockito-core:2.23.4"
-    //testImplementation "org.elasticsearch.test:framework:6.2.2"
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.8.0'
-    testImplementation "com.github.javafaker:javafaker:0.12"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.mockito:mockito-core:2.23.4"
 
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId 'rsql-elastic'
+            from components.java
+        }
+    }
 }

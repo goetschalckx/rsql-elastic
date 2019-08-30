@@ -15,7 +15,7 @@ public class ElasticVisitor extends NoArgRSQLVisitorAdapter<QueryBuilder> {
 
     private final ComparisonNodeInterpreter<QueryBuilder> comparisonNodeInterpreter;
 
-    ElasticVisitor(final ComparisonNodeInterpreter<QueryBuilder> comparisonNodeInterpreter) {
+    public ElasticVisitor(final ComparisonNodeInterpreter<QueryBuilder> comparisonNodeInterpreter) {
         this.comparisonNodeInterpreter = comparisonNodeInterpreter;
     }
 
