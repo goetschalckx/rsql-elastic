@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,10 +21,10 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class ElasticVisitorTest {
+public class ElasticRSQLVisitorTest {
 
     @InjectMocks
-    ElasticVisitor elasticVisitor;
+    ElasticRSQLVisitor elasticRSQLVisitor;
 
     @Mock
     ComparisonNodeInterpreter<QueryBuilder> comparisonNodeInterpreter;
@@ -54,7 +53,7 @@ public class ElasticVisitorTest {
         OrNode node = new OrNode(comparisonNodes);
 
         // Act
-        QueryBuilder actualQuery = elasticVisitor.visit(node);
+        QueryBuilder actualQuery = elasticRSQLVisitor.visit(node);
 
         // Assert
         assertEquals(expectedQuery, actualQuery);
@@ -71,7 +70,7 @@ public class ElasticVisitorTest {
                 .must(boolQuery());
 
         // Act
-        QueryBuilder actualQuery = elasticVisitor.visit(node);
+        QueryBuilder actualQuery = elasticRSQLVisitor.visit(node);
 
         // Assert
         assertEquals(expectedQuery, actualQuery);
@@ -89,7 +88,7 @@ public class ElasticVisitorTest {
                 .must(boolQuery().should(boolQuery()).should(boolQuery()));
 
         // Act
-        QueryBuilder actualQuery = elasticVisitor.visit(andNode);
+        QueryBuilder actualQuery = elasticRSQLVisitor.visit(andNode);
 
         // Assert
         assertEquals(expectedQuery, actualQuery);
@@ -104,7 +103,7 @@ public class ElasticVisitorTest {
         when(comparisonNodeInterpreter.interpret(any())).thenReturn(boolQuery());
 
         // Act
-        QueryBuilder actualQuery = elasticVisitor.visit(node);
+        QueryBuilder actualQuery = elasticRSQLVisitor.visit(node);
 
         // Assert
         assertEquals(expectedQuery, actualQuery);
@@ -122,7 +121,7 @@ public class ElasticVisitorTest {
                 .must(boolQuery().should(boolQuery()).should(boolQuery()));
 
         // Act
-        QueryBuilder actualQuery = elasticVisitor.visit(andNode);
+        QueryBuilder actualQuery = elasticRSQLVisitor.visit(andNode);
 
         // Assert
         assertEquals(expectedQuery, actualQuery);

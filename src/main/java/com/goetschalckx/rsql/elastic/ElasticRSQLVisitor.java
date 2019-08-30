@@ -11,11 +11,11 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 
-public class ElasticVisitor extends NoArgRSQLVisitorAdapter<QueryBuilder> {
+public class ElasticRSQLVisitor extends NoArgRSQLVisitorAdapter<QueryBuilder> {
 
     private final ComparisonNodeInterpreter<QueryBuilder> comparisonNodeInterpreter;
 
-    public ElasticVisitor(final ComparisonNodeInterpreter<QueryBuilder> comparisonNodeInterpreter) {
+    public ElasticRSQLVisitor(final ComparisonNodeInterpreter<QueryBuilder> comparisonNodeInterpreter) {
         this.comparisonNodeInterpreter = comparisonNodeInterpreter;
     }
 
