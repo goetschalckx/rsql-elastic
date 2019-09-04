@@ -12,6 +12,7 @@ import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
 import static org.elasticsearch.index.query.QueryBuilders.rangeQuery;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 import static org.elasticsearch.index.query.QueryBuilders.termsQuery;
+import static org.elasticsearch.index.query.QueryBuilders.wildcardQuery;
 import static org.junit.Assert.assertEquals;
 
 public class ElasticComparisonNodeInterpreterTest {
@@ -19,7 +20,9 @@ public class ElasticComparisonNodeInterpreterTest {
     ElasticComparisonNodeInterpreter interpreter = new ElasticComparisonNodeInterpreter();
     String selector = "foo";
     String arg = "90.01";
+    String wildcardArg = "bar*";
     List<String> args = asList(arg);
+    List<String> wildcardArgs = asList(wildcardArg);
 
     @Test
     public void testInterpretEquals() {
@@ -36,11 +39,40 @@ public class ElasticComparisonNodeInterpreterTest {
     }
 
     @Test
+    public void testInterpretEqualsWildcard() {
+        // Arrange
+        ComparisonOperator equals = new ComparisonOperator("==", false);
+        QueryBuilder expectedQuery = wildcardQuery(selector, wildcardArg);
+        ComparisonNode node = new ComparisonNode(equals, selector, wildcardArgs);
+
+        // Act
+        QueryBuilder actualQuery = interpreter.interpret(node);
+
+        // Assert
+        assertEquals(expectedQuery, actualQuery);
+    }
+
+
+    @Test
     public void testInterpretNotEquals() {
         // Arrange
         ComparisonOperator notEquals = new ComparisonOperator("!=", false);
         QueryBuilder expectedQuery = boolQuery().mustNot(termQuery(selector, arg));
         ComparisonNode node = new ComparisonNode(notEquals, selector, args);
+
+        // Act
+        QueryBuilder actualQuery = interpreter.interpret(node);
+
+        // Assert
+        assertEquals(expectedQuery, actualQuery);
+    }
+
+    @Test
+    public void testInterpretNotEqualsWildcard() {
+        // Arrange
+        ComparisonOperator notEquals = new ComparisonOperator("!=", false);
+        QueryBuilder expectedQuery = boolQuery().mustNot(wildcardQuery(selector, wildcardArg));
+        ComparisonNode node = new ComparisonNode(notEquals, selector, wildcardArgs);
 
         // Act
         QueryBuilder actualQuery = interpreter.interpret(node);
