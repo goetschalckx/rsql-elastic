@@ -1,9 +1,8 @@
-package com.goetschalckx.rsql.elastic;
+package io.github.goetschalckx.rsql.elastic;
 
 import cz.jirutka.rsql.parser.ast.ComparisonNode;
 import org.elasticsearch.index.query.QueryBuilder;
 
-import static com.goetschalckx.rsql.elastic.ComparisonOperatorProxy.asEnum;
 import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
 import static org.elasticsearch.index.query.QueryBuilders.rangeQuery;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
@@ -16,7 +15,7 @@ public class ElasticComparisonNodeInterpreter implements ComparisonNodeInterpret
 
     @Override
     public QueryBuilder interpret(final ComparisonNode comparisonNode) {
-        final ComparisonOperatorProxy operator = asEnum(comparisonNode.getOperator());
+        final ComparisonOperatorProxy operator = ComparisonOperatorProxy.asEnum(comparisonNode.getOperator());
         switch (operator) {
             case NOT_EQUAL:
                 return createNotEqual(comparisonNode);

@@ -1,13 +1,18 @@
-.idea/
-.idea/*
-.gradle/
-classes/
-build/
-.gradle
+### Java ###
 *.class
-*.jar
-*.war
-*.ear
+build
+bin
+out
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+### Intellij ###
+.idea/
+*.iml
+.idea_modules/
+
+### Visual Studio Code ###
+.vscode
+.history
+
+### Gradle ###
+.gradle
+gradle.properties

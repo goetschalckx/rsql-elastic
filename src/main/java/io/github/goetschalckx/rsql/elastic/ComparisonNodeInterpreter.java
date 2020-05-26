@@ -1,4 +1,4 @@
-package com.goetschalckx.rsql.elastic;
+package io.github.goetschalckx.rsql.elastic;
 
 import cz.jirutka.rsql.parser.ast.ComparisonNode;
 

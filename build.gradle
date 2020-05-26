@@ -2,30 +2,116 @@ plugins {
     id "java"
     id "jacoco"
     id "maven-publish"
+    id 'signing'
 }
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
-group = 'com.goetschalckx'
-version = '0.1'
+group = 'io.github.goetschalckx'
+version = '0.1.0-SNAPSHOT'
 
 dependencies {
     implementation "org.elasticsearch.client:transport:6.2.2"
     implementation "cz.jirutka.rsql:rsql-parser:2.1.0"
 
-    // Testing
     testImplementation "junit:junit:4.12"
     testImplementation "org.mockito:mockito-core:2.23.4"
+}
 
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier "javadoc"
+    from javadoc.destinationDir
 }
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        maven(MavenPublication) {
+            pom {
+                name = 'RSQL (FIQL) for Elasticsearch'
+                description = 'Generates Elasticsearch queries from RSQL query'
+                packaging = 'jar'
+                url = 'https://github.com/goetschalckx/rsql-elastic'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'egoetschalckx'
+                        name = 'Eric Goetschalckx'
+                        email = 'eric@goetschalckx.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/goetschalckx/rsql-elastic.git'
+                    developerConnection = 'scm:git:https://github.com/goetschalckx/rsql-elastic.git'
+                    url = 'https://github.com/goetschalckx/rsql-elastic'
+                }
+            }
+
             artifactId 'rsql-elastic'
+
             from components.java
+            artifact sourceJar
+            artifact javadocJar
         }
+    }
+
+    repositories {
+        mavenLocal()
+
+        maven {
+            def repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+
+            url = version.endsWith('SNAPSHOT') ? snapshotRepositoryUrl : repositoryUrl
+
+            println "Artifact Version: " + version
+            println "Maven URL: " + url
+
+            credentials {
+                username project.hasProperty("ossrhUser") ? ossrhUser : ""
+                password project.hasProperty("ossrhPassword") ? ossrhPassword : ""
+            }
+        }
+    }
+
+}
+
+signing {
+    sign(publishing.publications)
+}
+
+tasks.withType(Sign) {
+    onlyIf {
+        project.hasProperty('signing.keyId')
+    }
+
+    doFirst {
+        println "Signing artifacts..."
+    }
+}
+
+tasks.publish.dependsOn check
+tasks.publishToMavenLocal.dependsOn check
+tasks.test.finalizedBy jacocoTestReport
+
+jacocoTestReport {
+    dependsOn test
+
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.enabled true
     }
 }
