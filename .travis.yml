@@ -4,7 +4,7 @@ jdk:
   #- openjdk8
   - openjdk11
 env:
-  - CODACY_PROJECT_TOKEN=9001
+  - CODACY_PROJECT_TOKEN=a1ea40fb7ac744b08c300526708dc966
 script: ./gradlew check
 notifications:
   email: false
