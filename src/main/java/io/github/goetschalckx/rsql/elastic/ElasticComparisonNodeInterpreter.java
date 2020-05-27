@@ -89,4 +89,5 @@ public class ElasticComparisonNodeInterpreter implements ComparisonNodeInterpret
     private static String firstArg(final ComparisonNode comparisonNode) {
         return comparisonNode.getArguments().get(0);
     }
+
 }
