@@ -59,4 +59,5 @@ public class ElasticRSQLVisitor extends NoArgRSQLVisitorAdapter<QueryBuilder> {
             return visit((ComparisonNode) node);
         }
     }
+
 }

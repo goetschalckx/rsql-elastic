@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
 import static org.elasticsearch.index.query.QueryBuilders.rangeQuery;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
@@ -17,12 +17,12 @@ import static org.junit.Assert.assertEquals;
 
 public class ElasticComparisonNodeInterpreterTest {
 
-    ElasticComparisonNodeInterpreter interpreter = new ElasticComparisonNodeInterpreter();
-    String selector = "foo";
-    String arg = "90.01";
-    String wildcardArg = "bar*";
-    List<String> args = asList(arg);
-    List<String> wildcardArgs = asList(wildcardArg);
+    private final ElasticComparisonNodeInterpreter interpreter = new ElasticComparisonNodeInterpreter();
+    private final String selector = "foo";
+    private final String arg = "90.01";
+    private final String wildcardArg = "bar*";
+    private final List<String> args = singletonList(arg);
+    private final List<String> wildcardArgs = singletonList(wildcardArg);
 
     @Test
     public void testInterpretEquals() {

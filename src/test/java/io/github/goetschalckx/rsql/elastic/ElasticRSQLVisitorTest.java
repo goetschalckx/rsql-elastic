@@ -16,7 +16,6 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -24,24 +23,24 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class ElasticRSQLVisitorTest {
 
     @InjectMocks
-    ElasticRSQLVisitor elasticRSQLVisitor;
+    private ElasticRSQLVisitor elasticRSQLVisitor;
 
     @Mock
-    ComparisonNodeInterpreter<QueryBuilder> comparisonNodeInterpreter;
+    private ComparisonNodeInterpreter<QueryBuilder> comparisonNodeInterpreter;
+
+    private final String selector = "foo";
+    private final String arg = "4.2";
+    private final List<String> args = Collections.singletonList(arg);
+    private final ComparisonOperator equals = new ComparisonOperator("==", false);
+    private final ComparisonOperator notEquals = new ComparisonOperator("!=", false);
+    private final ComparisonNode equalsNode = new ComparisonNode(equals, selector, args);
+    private final ComparisonNode notEqualsNode = new ComparisonNode(notEquals, selector, args);
+    private final List<ComparisonNode> comparisonNodes = asList(equalsNode, notEqualsNode);
 
     @Before
     public void before() {
         initMocks(this);
     }
-
-    String selector = "foo";
-    String arg = "4.2";
-    List<String> args = Collections.singletonList(arg);
-    ComparisonOperator equals = new ComparisonOperator("==", false);
-    ComparisonOperator notEquals = new ComparisonOperator("!=", false);
-    ComparisonNode equalsNode = new ComparisonNode(equals, selector, args);
-    ComparisonNode notEqualsNode = new ComparisonNode(notEquals, selector, args);
-    List<ComparisonNode> comparisonNodes = asList(equalsNode, notEqualsNode);
 
     @Test
     public void testVisitOr() {

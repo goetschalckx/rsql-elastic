@@ -6,4 +6,5 @@ import cz.jirutka.rsql.parser.ast.ComparisonNode;
 public interface ComparisonNodeInterpreter<T> {
 
     T interpret(ComparisonNode comparisonNode);
+
 }
